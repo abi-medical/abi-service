@@ -1,0 +1,25 @@
+-Descargar ngrok para crear tunel
+ngrok.exe http port
+-Configurar acceso por IIS Express
+carpeta oculta .vs/config modificar archivo applicationhost.config
+  	  <site name="WebABI" id="2">
+                <application path="/" applicationPool="Clr4IntegratedAppPool">
+                    <virtualDirectory path="/" physicalPath="C:\Users\CamiloAndrés\source\repos\WebABI\WebABI" />
+                </application>
+                <bindings>
+                  <binding protocol="http" bindingInformation="*:54485:localhost" />
+                  <binding protocol="http" bindingInformation="*:54485:*" />
+                 
+                </bindings>
+            </site>
+
+Debe quedar así (El puerto cambia dependiendo del PC)
+
+Permitir acceso remoto
+netsh http add urlacl url=http://*:54485/ user=Everyone (si Windows está  en Ingles)
+netsh http add urlacl url=http://*:54485/ user=todos (si Windows está en Español)
+
+
+
+
+

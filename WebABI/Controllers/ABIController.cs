@@ -8,6 +8,12 @@ using System.Web.Mvc;
 
 namespace WebABI.Controllers
 {
+    public class MyModel
+    {
+        public int procedure { get; set; }
+        public int machine_instance { get; set; }
+        public string text { get; set; }
+    }
     public class AbiController : ApiController
     {
         // GET: ABI
@@ -18,20 +24,24 @@ namespace WebABI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        public void Post(int id,[FromBody]string value)
+        public MyModel Post([FromBody]MyModel myModel)
         {
-            Console.WriteLine("ID:" + id);
+            //Console.WriteLine("ID:" + id);
             Process process = new Process();
             try
             {
-                process.StartInfo.FileName = "C:\\Users\\CamiloAndrés\\source\\repos\\software analizador de movimiento\\Human-Lab.exe";
+                process.StartInfo.FileName = "C:\\Users\\CamiloAndrés\\source\\Human-Lab.exe";
                 process.Start();
+                return myModel;
+            
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                return  myModel;
+
             }
-          
+
 
         }
 

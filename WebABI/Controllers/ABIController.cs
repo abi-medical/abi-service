@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -32,12 +33,17 @@ namespace WebABI.Controllers
             {
                 process.StartInfo.FileName = "C:\\Users\\CamiloAndrés\\source\\Human-Lab.exe";
                 process.Start();
+                string path = System.IO.Directory.GetCurrentDirectory();
+                //string Text =  File.ReadAllText(path+"\\Data\\result.txt");
+                string Text = File.ReadAllText("C:\\result.txt");
+                myModel.text = Text;
                 return myModel;
             
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                //Console.WriteLine(e.Message);
+                myModel.text = e.Message;
                 return  myModel;
 
             }
